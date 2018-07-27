@@ -5,12 +5,12 @@
 
 query queryName($foo: ComplexType, $site: Site = MOBILE) {
   whoever123is: node(id: [123, 456]) {
-    id ,
+    id
     ... on User @defer {
       field2 {
-        id ,
-        alias: field1(first:10, after:$foo,) @include(if: $foo) {
-          id,
+        id
+        alias: field1(first: 10, after: $foo) @include(if: $foo) {
+          id
           ...frag
         }
       }
@@ -46,14 +46,19 @@ subscription StoryLikeSubscription($input: StoryLikeSubscribeInput) {
 }
 
 fragment frag on Friend {
-  foo(size: $size, bar: $b, obj: {key: "value", block: """
-
+  foo(
+    size: $size
+    bar: $b
+    obj: {
+      key: "value"
+      block: """
       block string uses \"""
-
-  """})
+      """
+    }
+  )
 }
 
 {
-  unnamed(truthy: true, falsey: false, nullish: null),
+  unnamed(truthy: true, falsey: false, nullish: null)
   query
 }

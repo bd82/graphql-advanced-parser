@@ -1,0 +1,62 @@
+{
+  "name": "graphql-advanced-parser",
+  "version": "0.0.1",
+  "main": "lib/api.js",
+  "repository": "https://github.com/bd82/graphql-advanced-parser.git",
+  "author": "Shahar Soel",
+  "license": "MIT",
+  "description": "Reuseable Fault Tolerant GraphQL Parser",
+  "keywords": [
+    "graphql",
+    "parser",
+    "language services",
+    "language services"
+  ],
+  "dependencies": {
+    "chevrotain": "3.7.3",
+    "xregexp": "4.2.0"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "coveralls": "3.0.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "gitty": "3.6.0",
+    "jsonfile": "4.0.0",
+    "lodash": "4.17.10",
+    "mocha": "5.0.5",
+    "npm-run-all": "4.1.2",
+    "nyc": "11.6.0",
+    "prettier": "1.11.1",
+    "semver": "5.5.0"
+  },
+  "scripts": {
+    "release": "git fetch && git rebase && node scripts/release.js",
+    "ci_full_flow": "npm-run-all test check_coverage verify_format",
+    "test": "nyc mocha \"./test/**/*spec.js\"",
+    "check_coverage": "nyc check-coverage --lines 10 --statements 10 --functions 10",
+    "report_coverage": "cat coverage/lcov.info | node_modules/.bin/coveralls",
+    "format": "prettier --no-editorconfig --write \"**/*.@(ts|js|md)\"",
+    "verify_format": "prettier --no-editorconfig --list-different  \"**/*.@(ts|js)\""
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.md",
+    "api.d.ts"
+  ],
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "exclude": [
+      "test/**.*"
+    ]
+  },
+  "prettier": {
+    "semi": false
+  }
+}

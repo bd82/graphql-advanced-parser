@@ -12,5 +12,16 @@ describe("The GraphQl advanced Parser", () => {
       expect(parseResult.lexErrors).to.be.empty
       expect(parseResult.parseErrors).to.be.empty
     })
+
+    it("works for schema kitchen sink sample", () => {
+      const samplePath = resolve(
+        __dirname,
+        "./samples/schema-kitchen-sink.graphql"
+      )
+      const sampleText = fs.readFileSync(samplePath, "utf8")
+      const parseResult = parse(sampleText)
+      expect(parseResult.lexErrors).to.be.empty
+      expect(parseResult.parseErrors).to.be.empty
+    })
   })
 })

@@ -1,7 +1,7 @@
 {
   "name": "graphql-advanced-parser",
   "version": "0.0.1",
-  "main": "lib/api.js",
+  "main": "lib/parser.js",
   "repository": "https://github.com/bd82/graphql-advanced-parser.git",
   "author": "Shahar Soel",
   "license": "MIT",

@@ -46,8 +46,7 @@
     "lib",
     "LICENSE",
     "CHANGELOG.md",
-    "README.md",
-    "api.d.ts"
+    "README.md"
   ],
   "nyc": {
     "reporter": [

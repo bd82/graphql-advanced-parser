@@ -1,7 +1,7 @@
 const { expect } = require("chai")
 const { resolve } = require("path")
 const fs = require("fs")
-const { parse } = require("../lib/parser")
+const { parse } = require("../lib/api")
 
 describe("The GraphQl advanced Parser", () => {
   describe("Can successfully parse the official Samples", () => {

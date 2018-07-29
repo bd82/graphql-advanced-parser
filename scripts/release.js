@@ -12,31 +12,31 @@ const status = myRepo.statusSync()
 
 // Checks and Validations
 if (
-    !_.isEmpty(status.staged) ||
-    !_.isEmpty(status.unstaged) ||
-    !_.isEmpty(status.untracked)
+  !_.isEmpty(status.staged) ||
+  !_.isEmpty(status.unstaged) ||
+  !_.isEmpty(status.untracked)
 ) {
-    console.log(
-        "Error: git working directory must be clean in order to perform a release"
-    )
-    process.exit(-1)
+  console.log(
+    "Error: git working directory must be clean in order to perform a release"
+  )
+  process.exit(-1)
 }
 
 const branchesInfo = myRepo.getBranchesSync()
 
 if (branchesInfo.current !== "master") {
-    console.log(
-        "Error: can only perform release job from master or temp_master branch"
-    )
-    process.exit(-1)
+  console.log(
+    "Error: can only perform release job from master or temp_master branch"
+  )
+  process.exit(-1)
 }
 
 const dateTemplateRegExp = /^(## X\.Y\.Z )\(INSERT_DATE_HERE\)/
 if (!dateTemplateRegExp.test(config.changeLogString)) {
-    console.log(
-        "CHANGELOG.md must have first line in the format '## X.Y.Z (INSERT_DATE_HERE)'"
-    )
-    process.exit(-1)
+  console.log(
+    "CHANGELOG.md must have first line in the format '## X.Y.Z (INSERT_DATE_HERE)'"
+  )
+  process.exit(-1)
 }
 
 // bump package.json
@@ -48,8 +48,8 @@ jf.writeFileSync(config.packagePath, bumpedPkgJson, { spaces: 2, EOL: "\r\n" })
 // bump version insider parser.js
 const apiText = fs.readFileSync(config.apiPath, "utf8")
 const updatedVersionParserText = apiText.replace(
-    `VERSION: "${config.currVersion}"`,
-    `VERSION: "${newVersion}"`
+  `VERSION: "${config.currVersion}"`,
+  `VERSION: "${newVersion}"`
 )
 fs.writeFileSync(config.apiPath, updatedVersionParserText)
 
@@ -57,8 +57,8 @@ fs.writeFileSync(config.apiPath, updatedVersionParserText)
 const nowDate = new Date()
 const nowDateString = nowDate.toLocaleDateString().replace(/\//g, "-")
 const changeLogDate = config.changeLogString.replace(
-    dateTemplateRegExp,
-    `## ${newVersion} (${nowDateString})`
+  dateTemplateRegExp,
+  `## ${newVersion} (${nowDateString})`
 )
 fs.writeFileSync(config.changeLogPath, changeLogDate)
 
@@ -66,16 +66,16 @@ fs.writeFileSync(config.changeLogPath, changeLogDate)
 const newTagName = config.tagPrefix + newVersion
 
 myRepo.addSync([
-    config.packagePath,
-    config.changeLogPath,
-    config.htmlDocsPath,
-    config.apiPath
+  config.packagePath,
+  config.changeLogPath,
+  config.htmlDocsPath,
+  config.apiPath
 ])
 myRepo.commitSync(`release ${newVersion}`)
 myRepo.createTagSync(newTagName)
 myRepo.push("origin", "master", () => {
-    console.log("finished push to branch")
+  console.log("finished push to branch")
 })
 myRepo.push("origin", newTagName, () => {
-    console.log("finished push tag")
+  console.log("finished push tag")
 })

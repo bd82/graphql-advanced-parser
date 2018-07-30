@@ -33,7 +33,7 @@ mutation likeStory {
 }
 
 subscription StoryLikeSubscription($input: StoryLikeSubscribeInput) {
-  storyLikeSubscribe(input: $input) {
+  storyLikeS bscribe(input: $input) {
     story {
       likers {
         count

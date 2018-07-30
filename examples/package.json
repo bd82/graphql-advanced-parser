@@ -1,0 +1,13 @@
+{
+  "name": "graphql-advanced-parser-examples",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "graphql-advanced-parser" : "*"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "lodash": "4.17.10",
+    "mocha": "5.2.0"
+  }
+}

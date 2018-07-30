@@ -29,7 +29,8 @@ const sample2 = fs
 
 let thousandLineSample = ""
 
-_.forEach(_.range(0, 18), () => {
+// 16 x 65 === 1040 lines
+_.forEach(_.range(0, 16), () => {
   thousandLineSample += sample1
 })
 

@@ -5,11 +5,9 @@ const Benchmark = require("benchmark")
 const fs = require("fs")
 const path = require("path")
 const { parse: graphQLParse } = require("graphql/language/parser")
-const {
-  parse: chevParse,
-  graphQLLexer,
-  GraphQLParser
-} = require("../lib/parser")
+const { parse: chevParse } = require("../lib/parser")
+
+const { buildAst } = require("../lib/ast")
 
 const sample1 = fs
   .readFileSync(
@@ -44,22 +42,6 @@ function newSuite(name) {
   })
 }
 
-const parser = new GraphQLParser({ outputCst: false })
-
-function chevParseNoCst(text) {
-  const lexResult = graphQLLexer.tokenize(text)
-  // setting a new input will RESET the parser instance's state.
-  parser.input = lexResult.tokens
-  // any top level rule may be used as an entry point
-  const embeddedActionsResult = parser.Document()
-
-  return {
-    value: embeddedActionsResult,
-    lexErrors: lexResult.errors,
-    parseErrors: parser.errors
-  }
-}
-
 newSuite("GraphQL Parser Benchmark")
   .add("grahql-js - AST output", () => graphQLParse(thousandLineSample))
   .add("Chevrotain - CST output", () => {
@@ -70,15 +52,8 @@ newSuite("GraphQL Parser Benchmark")
     if (parseResult.parseErrors.length > 0) {
       throw "Oops"
     }
-  })
-  .add("Chevrotain - NO output", () => {
-    const parseResult = chevParseNoCst(thousandLineSample)
-    if (parseResult.lexErrors.length > 0) {
-      throw "Oops"
-    }
-    if (parseResult.parseErrors.length > 0) {
-      throw "Oops"
-    }
+
+    const ast = buildAst(parseResult.cst)
   })
   .run({
     async: false

@@ -5,9 +5,7 @@ const Benchmark = require("benchmark")
 const fs = require("fs")
 const path = require("path")
 const { parse: graphQLParse } = require("graphql/language/parser")
-const { parse: chevParse } = require("../lib/parser")
-
-const { buildAst } = require("../lib/ast")
+const { parseToAst, parseToCst } = require("../lib/api")
 
 const sample1 = fs
   .readFileSync(
@@ -45,15 +43,22 @@ function newSuite(name) {
 newSuite("GraphQL Parser Benchmark")
   .add("grahql-js - AST output", () => graphQLParse(thousandLineSample))
   .add("Chevrotain - CST output", () => {
-    const parseResult = chevParse(thousandLineSample)
+    const parseResult = parseToCst(thousandLineSample)
     if (parseResult.lexErrors.length > 0) {
       throw "Oops"
     }
     if (parseResult.parseErrors.length > 0) {
       throw "Oops"
     }
-
-    const ast = buildAst(parseResult.cst)
+  })
+  .add("Chevrotain - AST output", () => {
+    const parseResult = parseToAst(thousandLineSample)
+    if (parseResult.lexErrors.length > 0) {
+      throw "Oops"
+    }
+    if (parseResult.parseErrors.length > 0) {
+      throw "Oops"
+    }
   })
   .run({
     async: false

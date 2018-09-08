@@ -25,7 +25,7 @@
     "eslint-config-prettier": "2.10.0",
     "gitty": "3.6.0",
     "graphql": "^0.13.2",
-    "jsonfile": "4.0.0",
+    "jsonfile": "5.0.0",
     "lodash": "4.17.10",
     "mocha": "5.2.0",
     "npm-run-all": "4.1.3",

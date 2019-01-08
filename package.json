@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "chevrotain": "3.7.4",
-    "xregexp": "4.2.0"
+    "xregexp": "4.2.4"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",

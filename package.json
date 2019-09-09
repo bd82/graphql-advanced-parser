@@ -13,7 +13,7 @@
     "language services"
   ],
   "dependencies": {
-    "chevrotain": "3.7.4",
+    "chevrotain": "6.3.1",
     "xregexp": "4.2.0"
   },
   "devDependencies": {

@@ -399,11 +399,12 @@ check-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-chevrotain@3.7.4:
-  version "3.7.4"
-  resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-3.7.4.tgz#d2fea706d74fab60cdd879ed6425cc1feb522a9b"
+chevrotain@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-7.0.0.tgz#83c515851bf6310fffc14106c08ea970dd8edba0"
+  integrity sha512-cixG1Y+NQHUnnm2Smc8Zv6aioiM+K4pwKDYkobnSCBkD7ii5K4OLx5dizPVPBzKGDjj59C5fq+0Bw/HTpyJz6g==
   dependencies:
-    regexp-to-ast "0.3.5"
+    regexp-to-ast "0.5.0"
 
 circular-json@^0.3.1:
   version "0.3.3"
@@ -2075,9 +2076,10 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
 
-regexp-to-ast@0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/regexp-to-ast/-/regexp-to-ast-0.3.5.tgz#dedadd11bbb5f849df76b4e84b0b5335831c0473"
+regexp-to-ast@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/regexp-to-ast/-/regexp-to-ast-0.5.0.tgz#56c73856bee5e1fef7f73a00f1473452ab712a24"
+  integrity sha512-tlbJqcMHnPKI9zSrystikWKwHkBqu2a/Sgw01h3zFjvYrMxEDYHzzoMZnUrbIfpTFEsoRnnviOXNCzFiSc54Qw==
 
 regexp.prototype.flags@^1.2.0:
   version "1.2.0"
